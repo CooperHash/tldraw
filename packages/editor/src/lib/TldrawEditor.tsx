@@ -50,8 +50,6 @@ import { useLocalStore } from './hooks/useLocalStore'
 import { useRefState } from './hooks/useRefState'
 import { useStateAttribute } from './hooks/useStateAttribute'
 import { useZoomCss } from './hooks/useZoomCss'
-import { LicenseProvider } from './license/LicenseProvider'
-import { Watermark } from './license/Watermark'
 import { TldrawOptions } from './options'
 import { TLDeepLinkOptions } from './utils/deepLinks'
 import { getGlobalDocument } from './utils/dom'
@@ -217,11 +215,6 @@ export interface TldrawEditorBaseProps {
 	textOptions?: TLTextOptions
 
 	/**
-	 * The license key.
-	 */
-	licenseKey?: string
-
-	/**
 	 * Options for syncing the editor's camera state with the URL.
 	 *
 	 * @deprecated Use `options.deepLinks` instead. This prop will be removed in a future release.
@@ -350,24 +343,22 @@ export const TldrawEditor = memo(function TldrawEditor({
 				onError={(error) => annotateError(error, { tags: { origin: 'react.tldraw-before-app' } })}
 			>
 				{container && (
-					<LicenseProvider licenseKey={rest.licenseKey}>
-						<ContainerProvider container={container}>
-							<EditorComponentsProvider overrides={components}>
-								{store ? (
-									store instanceof Store ? (
-										// Store is ready to go, whether externally synced or not
-										<TldrawEditorWithReadyStore {...withDefaults} store={store} user={user} />
-									) : (
-										// Store is a synced store, so handle syncing stages internally
-										<TldrawEditorWithLoadingStore {...withDefaults} store={store} user={user} />
-									)
+					<ContainerProvider container={container}>
+						<EditorComponentsProvider overrides={components}>
+							{store ? (
+								store instanceof Store ? (
+									// Store is ready to go, whether externally synced or not
+									<TldrawEditorWithReadyStore {...withDefaults} store={store} user={user} />
 								) : (
-									// We have no store (it's undefined) so create one and possibly sync it
-									<TldrawEditorWithOwnStore {...withDefaults} store={store} user={user} />
-								)}
-							</EditorComponentsProvider>
-						</ContainerProvider>
-					</LicenseProvider>
+									// Store is a synced store, so handle syncing stages internally
+									<TldrawEditorWithLoadingStore {...withDefaults} store={store} user={user} />
+								)
+							) : (
+								// We have no store (it's undefined) so create one and possibly sync it
+								<TldrawEditorWithOwnStore {...withDefaults} store={store} user={user} />
+							)}
+						</EditorComponentsProvider>
+					</ContainerProvider>
 				)}
 			</OptionalErrorBoundary>
 		</div>
@@ -474,7 +465,6 @@ function TldrawEditorWithReadyStore({
 	// eslint-disable-next-line @typescript-eslint/no-deprecated
 	cameraOptions,
 	options,
-	licenseKey,
 	getShapeVisibility,
 	colorScheme,
 	assetUrls,
@@ -548,7 +538,6 @@ function TldrawEditorWithReadyStore({
 				autoFocus,
 				cameraOptions,
 				options,
-				licenseKey,
 				getShapeVisibility,
 				colorScheme: initColorScheme,
 				fontAssetUrls: assetUrls?.fonts,
@@ -589,7 +578,6 @@ function TldrawEditorWithReadyStore({
 			tools,
 			user,
 			setEditor,
-			licenseKey,
 			getShapeVisibility,
 			assetUrls,
 		]
@@ -735,7 +723,6 @@ function TldrawEditorWithReadyStore({
 				<EditorProvider editor={editor}>
 					<Layout onMount={onMount}>
 						{children ?? (Canvas ? <Canvas key={editor.contextId} /> : null)}
-						<Watermark />
 					</Layout>
 				</EditorProvider>
 			)}

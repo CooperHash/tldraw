@@ -4,6 +4,9 @@
 		"node_modules",
 		"dist",
 		"**/*.css",
+		"**/*.test.ts",
+		"**/*.test.tsx",
+		"src/lib/test",
 		".tsbuild*",
 		"vitest.config.ts",
 		"setupVitest.js"

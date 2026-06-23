@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 set -eux
 
-yarn run lazy run clean || true
-
 # a function called 'goodbye' that takes a string as an argument
 function goodbye() {
   rm -rf $1
@@ -28,14 +26,9 @@ goodbye .tsbuild
 goodbye .tsbuild-pub
 goodbye .tsbuild-dev
 goodbye .tsbuild-api
-goodbye .next
 
 rm -rf packages/*/api
 rm -rf {packages,apps}/*/*.tgz
-rm -rf {packages,apps}/vscode/extension/temp
-rm -rf {packages,apps}/vscode/extension/editor
-rm -rf apps/docs/content.json
-rm -rf apps/dotcom/client/e2e/.auth
 
 npm i -g corepack
 yarn
