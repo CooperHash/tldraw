@@ -43,8 +43,8 @@
 		"lint": "yarn run -T tsx ../../internal/scripts/lint.ts"
 	},
 	"dependencies": {
-		"@tldraw/state": "workspace:*",
-		"@tldraw/utils": "workspace:*"
+		"@tldraw/state": "github:CooperHash/tldraw#codex/mermaid-canvas-core&path:/packages/state",
+		"@tldraw/utils": "github:CooperHash/tldraw#codex/mermaid-canvas-core&path:/packages/utils"
 	},
 	"peerDependencies": {
 		"react": "^18.2.0 || ^19.2.1"

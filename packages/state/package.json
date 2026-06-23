@@ -48,7 +48,7 @@
 		"vitest": "^4.1.7"
 	},
 	"dependencies": {
-		"@tldraw/utils": "workspace:*"
+		"@tldraw/utils": "github:CooperHash/tldraw#codex/mermaid-canvas-core&path:/packages/utils"
 	},
 	"typedoc": {
 		"readmeFile": "none",

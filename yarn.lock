@@ -3072,7 +3072,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tldraw/editor@workspace:*, @tldraw/editor@workspace:packages/editor":
+"@tldraw/editor@workspace:packages/editor":
   version: 0.0.0-use.local
   resolution: "@tldraw/editor@workspace:packages/editor"
   dependencies:
@@ -3082,12 +3082,12 @@ __metadata:
     "@tiptap/core": "npm:^3.12.1"
     "@tiptap/pm": "npm:^3.12.1"
     "@tiptap/react": "npm:^3.12.1"
-    "@tldraw/state": "workspace:*"
-    "@tldraw/state-react": "workspace:*"
-    "@tldraw/store": "workspace:*"
-    "@tldraw/tlschema": "workspace:*"
-    "@tldraw/utils": "workspace:*"
-    "@tldraw/validate": "workspace:*"
+    "@tldraw/state": "github:CooperHash/tldraw#codex/mermaid-canvas-core&path:/packages/state"
+    "@tldraw/state-react": "github:CooperHash/tldraw#codex/mermaid-canvas-core&path:/packages/state-react"
+    "@tldraw/store": "github:CooperHash/tldraw#codex/mermaid-canvas-core&path:/packages/store"
+    "@tldraw/tlschema": "github:CooperHash/tldraw#codex/mermaid-canvas-core&path:/packages/tlschema"
+    "@tldraw/utils": "github:CooperHash/tldraw#codex/mermaid-canvas-core&path:/packages/utils"
+    "@tldraw/validate": "github:CooperHash/tldraw#codex/mermaid-canvas-core&path:/packages/validate"
     "@types/benchmark": "npm:^2.1.5"
     "@types/rbush": "npm:^3.0.0"
     "@types/react": "npm:^19.2.7"
@@ -3111,12 +3111,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@tldraw/mermaid@workspace:*, @tldraw/mermaid@workspace:packages/mermaid":
+"@tldraw/mermaid@workspace:packages/mermaid":
   version: 0.0.0-use.local
   resolution: "@tldraw/mermaid@workspace:packages/mermaid"
   dependencies:
-    "@tldraw/tlschema": "workspace:*"
-    "@tldraw/utils": "workspace:*"
+    "@tldraw/tlschema": "github:CooperHash/tldraw#codex/mermaid-canvas-core&path:/packages/tlschema"
+    "@tldraw/utils": "github:CooperHash/tldraw#codex/mermaid-canvas-core&path:/packages/utils"
     "@types/react": "npm:^19.2.7"
     "@types/react-dom": "npm:^19.2.3"
     lazyrepo: "npm:0.0.0-alpha.27"
@@ -3127,7 +3127,7 @@ __metadata:
   peerDependencies:
     react: ^18.2.0 || ^19.2.1
     react-dom: ^18.2.0 || ^19.2.1
-    tldraw: "workspace:*"
+    tldraw: "*"
   languageName: unknown
   linkType: soft
 
@@ -3166,14 +3166,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@tldraw/state-react@workspace:*, @tldraw/state-react@workspace:packages/state-react":
+"@tldraw/state-react@workspace:packages/state-react":
   version: 0.0.0-use.local
   resolution: "@tldraw/state-react@workspace:packages/state-react"
   dependencies:
     "@testing-library/dom": "npm:^10.0.0"
     "@testing-library/react": "npm:^16.0.0"
-    "@tldraw/state": "workspace:*"
-    "@tldraw/utils": "workspace:*"
+    "@tldraw/state": "github:CooperHash/tldraw#codex/mermaid-canvas-core&path:/packages/state"
+    "@tldraw/utils": "github:CooperHash/tldraw#codex/mermaid-canvas-core&path:/packages/utils"
     "@types/react": "npm:^19.2.7"
     "@types/react-dom": "npm:^19.2.3"
     react: "npm:^19.2.1"
@@ -3185,24 +3185,24 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@tldraw/state@workspace:*, @tldraw/state@workspace:packages/state":
+"@tldraw/state@workspace:packages/state":
   version: 0.0.0-use.local
   resolution: "@tldraw/state@workspace:packages/state"
   dependencies:
-    "@tldraw/utils": "workspace:*"
+    "@tldraw/utils": "github:CooperHash/tldraw#codex/mermaid-canvas-core&path:/packages/utils"
     "@types/lodash": "npm:^4.17.14"
     lodash: "npm:^4.17.21"
     vitest: "npm:^4.1.7"
   languageName: unknown
   linkType: soft
 
-"@tldraw/store@workspace:*, @tldraw/store@workspace:packages/store":
+"@tldraw/store@workspace:packages/store":
   version: 0.0.0-use.local
   resolution: "@tldraw/store@workspace:packages/store"
   dependencies:
     "@peculiar/webcrypto": "npm:^1.5.0"
-    "@tldraw/state": "workspace:*"
-    "@tldraw/utils": "workspace:*"
+    "@tldraw/state": "github:CooperHash/tldraw#codex/mermaid-canvas-core&path:/packages/state"
+    "@tldraw/utils": "github:CooperHash/tldraw#codex/mermaid-canvas-core&path:/packages/utils"
     lazyrepo: "npm:0.0.0-alpha.27"
     raf: "npm:^3.4.1"
     vitest: "npm:^4.1.7"
@@ -3211,14 +3211,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@tldraw/tlschema@workspace:*, @tldraw/tlschema@workspace:packages/tlschema":
+"@tldraw/tlschema@workspace:packages/tlschema":
   version: 0.0.0-use.local
   resolution: "@tldraw/tlschema@workspace:packages/tlschema"
   dependencies:
-    "@tldraw/state": "workspace:*"
-    "@tldraw/store": "workspace:*"
-    "@tldraw/utils": "workspace:*"
-    "@tldraw/validate": "workspace:*"
+    "@tldraw/state": "github:CooperHash/tldraw#codex/mermaid-canvas-core&path:/packages/state"
+    "@tldraw/store": "github:CooperHash/tldraw#codex/mermaid-canvas-core&path:/packages/store"
+    "@tldraw/utils": "github:CooperHash/tldraw#codex/mermaid-canvas-core&path:/packages/utils"
+    "@tldraw/validate": "github:CooperHash/tldraw#codex/mermaid-canvas-core&path:/packages/validate"
     kleur: "npm:^4.1.5"
     lazyrepo: "npm:0.0.0-alpha.27"
     react: "npm:^19.2.1"
@@ -3229,7 +3229,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@tldraw/utils@workspace:*, @tldraw/utils@workspace:packages/utils":
+"@tldraw/utils@workspace:packages/utils":
   version: 0.0.0-use.local
   resolution: "@tldraw/utils@workspace:packages/utils"
   dependencies:
@@ -3246,11 +3246,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@tldraw/validate@workspace:*, @tldraw/validate@workspace:packages/validate":
+"@tldraw/validate@workspace:packages/validate":
   version: 0.0.0-use.local
   resolution: "@tldraw/validate@workspace:packages/validate"
   dependencies:
-    "@tldraw/utils": "workspace:*"
+    "@tldraw/utils": "github:CooperHash/tldraw#codex/mermaid-canvas-core&path:/packages/utils"
     lazyrepo: "npm:0.0.0-alpha.27"
   languageName: unknown
   linkType: soft
@@ -8801,7 +8801,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tldraw@workspace:*, tldraw@workspace:packages/tldraw":
+"tldraw@workspace:packages/tldraw":
   version: 0.0.0-use.local
   resolution: "tldraw@workspace:packages/tldraw"
   dependencies:
@@ -8815,8 +8815,8 @@ __metadata:
     "@tiptap/pm": "npm:^3.12.1"
     "@tiptap/react": "npm:^3.12.1"
     "@tiptap/starter-kit": "npm:^3.12.1"
-    "@tldraw/editor": "workspace:*"
-    "@tldraw/store": "workspace:*"
+    "@tldraw/editor": "github:CooperHash/tldraw#codex/mermaid-canvas-core&path:/packages/editor"
+    "@tldraw/store": "github:CooperHash/tldraw#codex/mermaid-canvas-core&path:/packages/store"
     "@types/classnames": "npm:^2.3.4"
     "@types/lz-string": "npm:^1.5.0"
     "@types/react": "npm:^19.2.7"

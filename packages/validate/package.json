@@ -43,7 +43,7 @@
 		"lint": "yarn run -T tsx ../../internal/scripts/lint.ts"
 	},
 	"dependencies": {
-		"@tldraw/utils": "workspace:*"
+		"@tldraw/utils": "github:CooperHash/tldraw#codex/mermaid-canvas-core&path:/packages/utils"
 	},
 	"devDependencies": {
 		"lazyrepo": "0.0.0-alpha.27"

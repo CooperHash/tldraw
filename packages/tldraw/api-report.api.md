@@ -55,7 +55,7 @@ import { ReactElement } from 'react';
 import { ReactNode } from 'react';
 import { ReactPortal } from 'react';
 import { ReadonlySharedStyleMap } from '@tldraw/editor';
-import { RecordProps } from '@tldraw/tlschema';
+import { RecordProps } from '@tldraw/editor';
 import { Rectangle2d } from '@tldraw/editor';
 import { RecursivePartial } from '@tldraw/editor';
 import { RefAttributes } from 'react';
@@ -91,8 +91,8 @@ import { TLClipboardWriteInfo } from '@tldraw/editor';
 import { TLContent } from '@tldraw/editor';
 import { TLCropInfo } from '@tldraw/editor';
 import { TLCursorType } from '@tldraw/editor';
-import { TLDefaultColorStyle } from '@tldraw/tlschema';
-import { TLDefaultFontStyle } from '@tldraw/tlschema';
+import { TLDefaultColorStyle } from '@tldraw/editor';
+import { TLDefaultFontStyle } from '@tldraw/editor';
 import { TLDefaultSizeStyle } from '@tldraw/editor';
 import { TldrawEditorBaseProps } from '@tldraw/editor';
 import { TldrawEditorStoreProps } from '@tldraw/editor';
@@ -109,8 +109,7 @@ import { TLEventInfo } from '@tldraw/editor';
 import { TLExportType } from '@tldraw/editor';
 import { TLFileExternalAsset } from '@tldraw/editor';
 import { TLFileReplaceExternalContent } from '@tldraw/editor';
-import { TLFontFace } from '@tldraw/tlschema';
-import { TLFontFace as TLFontFace_2 } from '@tldraw/editor';
+import { TLFontFace } from '@tldraw/editor';
 import { TLFrameShape } from '@tldraw/editor';
 import { TLFrameShapeProps } from '@tldraw/editor';
 import { TLGeometryOpts } from '@tldraw/editor';
@@ -131,9 +130,9 @@ import { TLNoteShape } from '@tldraw/editor';
 import { TLNoteShapeProps } from '@tldraw/editor';
 import { TLOverlay } from '@tldraw/editor';
 import { TLPageId } from '@tldraw/editor';
-import { TLParentId } from '@tldraw/tlschema';
+import { TLParentId } from '@tldraw/editor';
 import { TLPointerEventInfo } from '@tldraw/editor';
-import { TLPropsMigrations } from '@tldraw/tlschema';
+import { TLPropsMigrations } from '@tldraw/editor';
 import { TLResizeInfo } from '@tldraw/editor';
 import { TLRichText } from '@tldraw/editor';
 import { TLSchema } from '@tldraw/editor';
@@ -164,7 +163,6 @@ import { Validator } from '@tldraw/validate';
 import { Vec } from '@tldraw/editor';
 import { VecLike } from '@tldraw/editor';
 import { VecModel } from '@tldraw/editor';
-import { VecModel as VecModel_2 } from '@tldraw/tlschema';
 
 // @public (undocumented)
 export type A11yPriority = 'assertive' | 'polite';
@@ -193,7 +191,7 @@ export type AlertSeverity = 'error' | 'info' | 'success' | 'warning';
 export function AlignMenuItems(): JSX.Element;
 
 // @public (undocumented)
-export const allDefaultFontFaces: TLFontFace_2[];
+export const allDefaultFontFaces: TLFontFace[];
 
 // @public (undocumented)
 export function ArrangeMenuSubmenu(): JSX.Element | null;
@@ -353,18 +351,18 @@ export class ArrowShapeUtil extends ShapeUtil<TLArrowShape> {
     onEditStart(shape: TLArrowShape): void;
     // (undocumented)
     onHandleDrag(shape: TLArrowShape, info: TLHandleDragInfo<TLArrowShape>): ({
-        id: TLShapeId_2;
+        id: TLShapeId;
         meta?: Partial<JsonObject> | undefined;
         props?: Partial<TLArrowShapeProps> | undefined;
         type: "arrow";
     } & Partial<Omit<TLArrowShape, "id" | "meta" | "props" | "type">>) | {
-        id: TLShapeId_2;
+        id: TLShapeId;
         props: {
             bend: number;
         };
         type: "arrow";
     } | {
-        id: TLShapeId_2;
+        id: TLShapeId;
         props: {
             elbowMidPoint: number;
         };
@@ -374,15 +372,15 @@ export class ArrowShapeUtil extends ShapeUtil<TLArrowShape> {
     onResize(shape: TLArrowShape, info: TLResizeInfo<TLArrowShape>): {
         props: {
             bend: number;
-            end: VecModel_2;
-            start: VecModel_2;
+            end: VecModel;
+            start: VecModel;
         };
     };
     // (undocumented)
     onTranslate(initialShape: TLArrowShape, shape: TLArrowShape): void;
     // (undocumented)
     onTranslateStart(shape: TLArrowShape): ({
-        id: TLShapeId_2;
+        id: TLShapeId;
         meta?: Partial<JsonObject> | undefined;
         props?: Partial<TLArrowShapeProps> | undefined;
         type: "arrow";
@@ -547,7 +545,7 @@ export class BookmarkShapeUtil extends BaseBoxShapeUtil<TLBookmarkShape> {
     static migrations: TLPropsMigrations;
     // (undocumented)
     onBeforeCreate(next: TLBookmarkShape): {
-        id: TLShapeId_2;
+        id: TLShapeId;
         index: IndexKey;
         isLocked: boolean;
         meta: JsonObject;
@@ -567,7 +565,7 @@ export class BookmarkShapeUtil extends BaseBoxShapeUtil<TLBookmarkShape> {
     };
     // (undocumented)
     onBeforeUpdate(prev: TLBookmarkShape, shape: TLBookmarkShape): {
-        id: TLShapeId_2;
+        id: TLShapeId;
         index: IndexKey;
         isLocked: boolean;
         meta: JsonObject;
@@ -1119,7 +1117,7 @@ export const DefaultActionsMenu: NamedExoticComponent<TLUiActionsMenuProps>;
 export function DefaultActionsMenuContent(): JSX.Element;
 
 // @public (undocumented)
-export function defaultAddFontsFromNode(node: Node_2, state: RichTextFontVisitorState, addFont: (font: TLFontFace_2) => void): RichTextFontVisitorState;
+export function defaultAddFontsFromNode(node: Node_2, state: RichTextFontVisitorState, addFont: (font: TLFontFace) => void): RichTextFontVisitorState;
 
 // @public (undocumented)
 export const defaultAssetUtils: readonly [typeof ImageAssetUtil, typeof VideoAssetUtil, typeof BookmarkAssetUtil];
@@ -2011,12 +2009,12 @@ export class FrameShapeUtil extends BaseFrameLikeShapeUtil<TLFrameShape> {
     static migrations: TLPropsMigrations;
     // (undocumented)
     onDoubleClickCorner(shape: TLFrameShape): {
-        id: TLShapeId_2;
+        id: TLShapeId;
         type: "frame";
     };
     // (undocumented)
     onDoubleClickEdge(shape: TLFrameShape, info: TLClickEventInfo): {
-        id: TLShapeId_2;
+        id: TLShapeId;
         props: {
             h: number;
             w: number;
@@ -2682,7 +2680,7 @@ export class LineShapeUtil extends ShapeUtil<TLLineShape> {
     onBeforeCreate(next: TLLineShape): TLLineShape | void;
     // (undocumented)
     onHandleDrag(shape: TLLineShape, { handle }: TLHandleDragInfo<TLLineShape>): {
-        id: TLShapeId_2;
+        id: TLShapeId;
         index: IndexKey;
         isLocked: boolean;
         meta: JsonObject;
@@ -2711,7 +2709,7 @@ export class LineShapeUtil extends ShapeUtil<TLLineShape> {
     };
     // (undocumented)
     onHandleDragStart(shape: TLLineShape, { handle }: TLHandleDragInfo<TLLineShape>): {
-        id: TLShapeId_2;
+        id: TLShapeId;
         index: IndexKey;
         isLocked: boolean;
         meta: JsonObject;
@@ -4086,13 +4084,13 @@ export interface TLDefaultExternalContentHandlerOpts extends TLExternalContentPr
 export interface TLDefaultFont {
     // (undocumented)
     italic: {
-        bold: TLFontFace_2;
-        normal: TLFontFace_2;
+        bold: TLFontFace;
+        normal: TLFontFace;
     };
     // (undocumented)
     normal: {
-        bold: TLFontFace_2;
-        normal: TLFontFace_2;
+        bold: TLFontFace;
+        normal: TLFontFace;
     };
 }
 
@@ -4161,7 +4159,6 @@ export interface TldrawImageProps extends TLImageExportOptions {
     assetUrls?: TLUiAssetUrlOverrides;
     bindingUtils?: readonly TLAnyBindingUtilConstructor[];
     format?: 'png' | 'svg';
-    licenseKey?: string;
     options?: Partial<TldrawOptions>;
     pageId?: TLPageId;
     shapeUtils?: readonly TLAnyShapeUtilConstructor[];
@@ -6397,9 +6394,9 @@ export function useDefaultHelpers(): {
     clearDialogs: () => void;
     clearToasts: () => void;
     copy: (source: TLUiEventSource) => Promise<void>;
-    copyAs: (ids: TLShapeId_2[], format?: TLCopyType) => void;
+    copyAs: (ids: TLShapeId[], format?: TLCopyType) => void;
     cut: (source: TLUiEventSource) => Promise<void>;
-    exportAs: (ids: TLShapeId_2[], opts?: {
+    exportAs: (ids: TLShapeId[], opts?: {
         format?: TLExportType | undefined;
         name?: string | undefined;
         scale?: number | undefined;

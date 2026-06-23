@@ -77,6 +77,7 @@ import { TLPageId } from '@tldraw/tlschema';
 import { TLParentId } from '@tldraw/tlschema';
 import { TLPropsMigrations } from '@tldraw/tlschema';
 import { TLRecord } from '@tldraw/tlschema';
+import { TLRecord as TLRecord_2 } from '@tldraw/tlschema/src';
 import { TLRichText } from '@tldraw/tlschema';
 import { TLScribble } from '@tldraw/tlschema';
 import { TLShape } from '@tldraw/tlschema';
@@ -84,7 +85,9 @@ import { TLShapeCrop } from '@tldraw/tlschema';
 import { TLShapeId } from '@tldraw/tlschema';
 import { TLShapePartial } from '@tldraw/tlschema';
 import { TLStore } from '@tldraw/tlschema';
+import { TLStore as TLStore_2 } from '@tldraw/tlschema/src';
 import { TLStoreProps } from '@tldraw/tlschema';
+import { TLStoreProps as TLStoreProps_2 } from '@tldraw/tlschema/src';
 import { TLStoreSchema } from '@tldraw/tlschema';
 import { TLStoreSnapshot } from '@tldraw/tlschema';
 import { TLTheme } from '@tldraw/tlschema';
@@ -96,6 +99,7 @@ import { TLUnknownBinding } from '@tldraw/tlschema';
 import { TLUnknownShape } from '@tldraw/tlschema';
 import { TLUser } from '@tldraw/tlschema';
 import { TLUserId } from '@tldraw/tlschema';
+import { TLUserId as TLUserId_2 } from '@tldraw/tlschema/src';
 import { TLUserStore } from '@tldraw/tlschema';
 import { TLVideoAsset } from '@tldraw/tlschema';
 import { UnknownRecord } from '@tldraw/store';
@@ -1102,33 +1106,7 @@ export class Editor extends EventEmitter<TLEventMap> {
                 parentId: TLParentId;
                 props: any;
                 rotation: number;
-                type: "my-custom-shape";
-                typeName: "shape";
-                x: number;
-                y: number;
-            } | {
-                id: TLShapeId;
-                index: IndexKey;
-                isLocked: boolean;
-                meta: JsonObject;
-                opacity: number;
-                parentId: TLParentId;
-                props: any;
-                rotation: number;
                 type: "note";
-                typeName: "shape";
-                x: number;
-                y: number;
-            } | {
-                id: TLShapeId;
-                index: IndexKey;
-                isLocked: boolean;
-                meta: JsonObject;
-                opacity: number;
-                parentId: TLParentId;
-                props: any;
-                rotation: number;
-                type: "test-shape";
                 typeName: "shape";
                 x: number;
                 y: number;
@@ -2340,17 +2318,6 @@ export function intersectPolygonBounds(points: VecLike[], bounds: Box): null | V
 // @public
 export function intersectPolygonPolygon(polygonA: VecLike[], polygonB: VecLike[]): null | VecLike[];
 
-// @internal (undocumented)
-export interface InvalidLicenseKeyResult {
-    // (undocumented)
-    isLicenseParseable: false;
-    // (undocumented)
-    reason: InvalidLicenseReason;
-}
-
-// @internal (undocumented)
-export type InvalidLicenseReason = 'has-key-development-mode' | 'invalid-license-key' | 'no-key-provided';
-
 // @internal
 export function isAccelKey(e: {
     ctrlKey: boolean;
@@ -2364,46 +2331,6 @@ export function isSafeFloat(n: number): boolean;
 export function kickoutOccludedShapes(editor: Editor, shapeIds: TLShapeId[], opts?: {
     filter?(parent: TLShape): boolean;
 }): void;
-
-// @internal (undocumented)
-export const LICENSE_TIMEOUT = 5000;
-
-// @internal (undocumented)
-export type LicenseFromKeyResult = InvalidLicenseKeyResult | ValidLicenseKeyResult;
-
-// @internal (undocumented)
-export interface LicenseInfo {
-    // (undocumented)
-    expiryDate: string;
-    // (undocumented)
-    flags: number;
-    // (undocumented)
-    hosts: string[];
-    // (undocumented)
-    id: string;
-}
-
-// @internal (undocumented)
-export class LicenseManager {
-    constructor(licenseKey: string | undefined, testPublicKey?: string);
-    // (undocumented)
-    static className: string;
-    // (undocumented)
-    getLicenseFromKey(licenseKey?: string): Promise<LicenseFromKeyResult>;
-    // (undocumented)
-    isCryptoAvailable: boolean;
-    // (undocumented)
-    isDevelopment: boolean;
-    // (undocumented)
-    isTest: boolean;
-    // (undocumented)
-    state: Atom<LicenseState, unknown>;
-    // (undocumented)
-    verbose: boolean;
-}
-
-// @internal (undocumented)
-export type LicenseState = 'expired' | 'licensed-with-watermark' | 'licensed' | 'pending' | 'unlicensed-production' | 'unlicensed';
 
 // @public (undocumented)
 export function linesIntersect(A: VecLike, B: VecLike, C: VecLike, D: VecLike): boolean;
@@ -3701,7 +3628,6 @@ export interface TldrawEditorBaseProps {
     getShapeVisibility?(shape: TLShape, editor: Editor): 'hidden' | 'inherit' | 'visible' | null | undefined;
     initialState?: string;
     initialTheme?: TLThemeId;
-    licenseKey?: string;
     onMount?: TLOnMountHandler;
     options?: Partial<TldrawOptions>;
     overlayUtils?: readonly TLAnyOverlayUtilConstructor[];
@@ -3902,8 +3828,6 @@ export interface TLEditorOptions {
     getShapeVisibility?(shape: TLShape, editor: Editor): 'hidden' | 'inherit' | 'visible' | null | undefined;
     initialState?: string;
     initialTheme?: TLThemeId;
-    // (undocumented)
-    licenseKey?: string;
     options?: Partial<TldrawOptions>;
     overlayUtils?: readonly TLAnyOverlayUtilConstructor[];
     shapeUtils: readonly TLAnyShapeUtilConstructor[];
@@ -5027,7 +4951,7 @@ export function usePassThroughMouseOverEvents(ref: RefObject<HTMLElement | null>
 export function usePassThroughWheelEvents(ref: RefObject<HTMLElement | null>): void;
 
 // @public
-export function usePeerIds(): TLUserId[];
+export function usePeerIds(): TLUserId_2[];
 
 // @public (undocumented)
 export function usePresence(userId: TLUserId): null | TLInstancePresence;
@@ -5124,50 +5048,16 @@ export function useTldrawCurrentUser(opts: {
 }): TLCurrentUser;
 
 // @public (undocumented)
-export function useTLSchemaFromUtils(opts: TLStoreSchemaOptions): StoreSchema<TLRecord, TLStoreProps>;
+export function useTLSchemaFromUtils(opts: TLStoreSchemaOptions): StoreSchema<TLRecord_2, TLStoreProps_2>;
 
 // @public (undocumented)
-export function useTLStore(opts: TLStoreOptions): TLStore;
+export function useTLStore(opts: TLStoreOptions): TLStore_2;
 
 // @public
 export function useUniqueSafeId(suffix?: string): SafeId;
 
 // @public (undocumented)
 export function useViewportHeight(): number;
-
-// @internal (undocumented)
-export interface ValidLicenseKeyResult {
-    // (undocumented)
-    daysSinceExpiry: number;
-    // (undocumented)
-    expiryDate: Date;
-    // (undocumented)
-    isAnnualLicense: boolean;
-    // (undocumented)
-    isAnnualLicenseExpired: boolean;
-    // (undocumented)
-    isDevelopment: boolean;
-    // (undocumented)
-    isDomainValid: boolean;
-    // (undocumented)
-    isEvaluationLicense: boolean;
-    // (undocumented)
-    isEvaluationLicenseExpired: boolean;
-    // (undocumented)
-    isInternalLicense: boolean;
-    // (undocumented)
-    isLicensedWithWatermark: boolean;
-    // (undocumented)
-    isLicenseParseable: true;
-    // (undocumented)
-    isNativeLicense: boolean;
-    // (undocumented)
-    isPerpetualLicense: boolean;
-    // (undocumented)
-    isPerpetualLicenseExpired: boolean;
-    // (undocumented)
-    license: LicenseInfo;
-}
 
 // @public (undocumented)
 export class Vec {

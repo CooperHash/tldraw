@@ -149,6 +149,11 @@
 	color: var(--tl-color-text);
 }
 
+.tl-watermark_SEE-LICENSE {
+	display: none !important;
+	pointer-events: none !important;
+}
+
 .tl-theme__light {
 	/* Canvas */
 	--tl-color-selection-fill: hsl(210, 100%, 56%, 24%);

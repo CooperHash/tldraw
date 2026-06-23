@@ -40,14 +40,14 @@
 		"lint": "yarn run -T tsx ../../internal/scripts/lint.ts"
 	},
 	"dependencies": {
-		"@tldraw/tlschema": "workspace:*",
-		"@tldraw/utils": "workspace:*",
+		"@tldraw/tlschema": "github:CooperHash/tldraw#codex/mermaid-canvas-core&path:/packages/tlschema",
+		"@tldraw/utils": "github:CooperHash/tldraw#codex/mermaid-canvas-core&path:/packages/utils",
 		"mermaid": "11.15.0"
 	},
 	"peerDependencies": {
 		"react": "^18.2.0 || ^19.2.1",
 		"react-dom": "^18.2.0 || ^19.2.1",
-		"tldraw": "workspace:*"
+		"tldraw": "*"
 	},
 	"devDependencies": {
 		"@types/react": "^19.2.7",

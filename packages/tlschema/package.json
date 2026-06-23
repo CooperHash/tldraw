@@ -50,10 +50,10 @@
 		"vitest": "^4.1.7"
 	},
 	"dependencies": {
-		"@tldraw/state": "workspace:*",
-		"@tldraw/store": "workspace:*",
-		"@tldraw/utils": "workspace:*",
-		"@tldraw/validate": "workspace:*"
+		"@tldraw/state": "github:CooperHash/tldraw#codex/mermaid-canvas-core&path:/packages/state",
+		"@tldraw/store": "github:CooperHash/tldraw#codex/mermaid-canvas-core&path:/packages/store",
+		"@tldraw/utils": "github:CooperHash/tldraw#codex/mermaid-canvas-core&path:/packages/utils",
+		"@tldraw/validate": "github:CooperHash/tldraw#codex/mermaid-canvas-core&path:/packages/validate"
 	},
 	"peerDependencies": {
 		"react": "^18.2.0 || ^19.2.1",
