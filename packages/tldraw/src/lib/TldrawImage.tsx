@@ -45,10 +45,6 @@ export interface TldrawImageProps extends TLImageExportOptions {
 	 */
 	bindingUtils?: readonly TLAnyBindingUtilConstructor[]
 	/**
-	 * The license key.
-	 */
-	licenseKey?: string
-	/**
 	 * Asset URL overrides.
 	 */
 	assetUrls?: TLUiAssetUrlOverrides
@@ -117,7 +113,6 @@ export const TldrawImage = memo(function TldrawImage(props: TldrawImageProps) {
 		darkMode,
 		preserveAspectRatio,
 		format = 'svg',
-		licenseKey,
 		assetUrls,
 		options: _options,
 		// eslint-disable-next-line @typescript-eslint/no-deprecated
@@ -153,7 +148,6 @@ export const TldrawImage = memo(function TldrawImage(props: TldrawImageProps) {
 			bindingUtils: bindingUtilsWithDefaults,
 			tools: [],
 			getContainer: () => tempElm,
-			licenseKey,
 			fontAssetUrls: assetUrlsWithOverrides.fonts,
 			options,
 		})
@@ -200,7 +194,6 @@ export const TldrawImage = memo(function TldrawImage(props: TldrawImageProps) {
 		padding,
 		darkMode,
 		preserveAspectRatio,
-		licenseKey,
 		pixelRatio,
 		assetUrlsWithOverrides,
 		options,

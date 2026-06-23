@@ -50,7 +50,11 @@
 		"tldraw": "workspace:*"
 	},
 	"devDependencies": {
+		"@types/react": "^19.2.7",
+		"@types/react-dom": "^19.2.3",
 		"lazyrepo": "0.0.0-alpha.27",
+		"react": "^19.2.1",
+		"react-dom": "^19.2.1",
 		"vitest": "^4.1.7"
 	},
 	"engines": {

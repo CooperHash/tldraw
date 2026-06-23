@@ -55,20 +55,6 @@ const packageJsonScriptExceptions: Record<string, Record<string, () => string | 
 	'@tldraw/monorepo': {
 		lint: () => undefined,
 	},
-	'@tldraw/assets': {
-		test: () => undefined,
-		'test-ci': () => undefined,
-		build: () => undefined,
-		'build-api': () => undefined,
-		prepack: () => undefined,
-		postpack: () => undefined,
-	},
-	'create-tldraw': {
-		build: () => './scripts/build.sh',
-		'build-api': () => undefined,
-		prepack: () => 'yarn build',
-		postpack: () => undefined,
-	},
 }
 
 async function checkPackageJsonScripts({

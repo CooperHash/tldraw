@@ -1,132 +1,89 @@
-import { getAssetUrlsByMetaUrl } from '@tldraw/assets/urls'
-import { StrictMode } from 'react'
+import { createMermaidDiagram, MermaidDiagramError } from '@tldraw/mermaid'
+import { useCallback, useRef, useState } from 'react'
 import { createRoot } from 'react-dom/client'
-import { Helmet, HelmetProvider } from 'react-helmet-async'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import {
-	DefaultErrorFallback,
-	ErrorBoundary,
-	setDefaultEditorAssetUrls,
-	setDefaultUiAssetUrls,
-} from 'tldraw'
-import { ExamplePage } from './ExamplePage'
-import { examples } from './examples'
-import { ExampleWrapper } from './ExampleWrapper'
-import Develop from './misc/develop'
-import EndToEnd from './misc/end-to-end'
+import { DefaultErrorFallback, ErrorBoundary, Tldraw, type Editor } from 'tldraw'
+import 'tldraw/tldraw.css'
+import './styles.css'
 
-const ENABLE_STRICT_MODE = false
+const defaultDiagram = `flowchart TD
+  start([Start]) --> parse[Parse Mermaid text]
+  parse --> render[Create tldraw shapes]
+  render --> canvas{Infinite canvas}
+  canvas --> edit[Move and edit shapes]
+  canvas --> export[Use tldraw exports]
+`
 
-// we use secret internal `setDefaultAssetUrls` functions to set these at the
-// top-level so assets don't need to be passed down in every single example.
-const assetUrls = getAssetUrlsByMetaUrl()
-setDefaultEditorAssetUrls(assetUrls)
-setDefaultUiAssetUrls(assetUrls)
-const gettingStartedExamples = examples.find((e) => e.id === 'Getting started')
-if (!gettingStartedExamples) throw new Error('Could not find getting started examples')
-const basicExample = gettingStartedExamples.value[0]
-if (!basicExample) throw new Error('Could not find initial example')
+function App() {
+	const editorRef = useRef<Editor | null>(null)
+	const [diagram, setDiagram] = useState(defaultDiagram)
+	const [status, setStatus] = useState('Ready')
 
-const router = createBrowserRouter([
-	{
-		path: '*',
-		lazy: async () => ({ element: <div>404</div> }),
-	},
-	{
-		path: '/',
-		lazy: async () => {
-			const Component = await basicExample.loadComponent()
-			return {
-				element: (
-					<ExamplePage example={basicExample}>
-						<ExampleWrapper example={basicExample} component={Component} />
-					</ExamplePage>
-				),
+	const renderDiagram = useCallback(async () => {
+		const editor = editorRef.current
+		if (!editor) return
+
+		setStatus('Rendering')
+		try {
+			editor.deleteShapes([...editor.getCurrentPageShapeIds()])
+			await createMermaidDiagram(editor, diagram)
+			editor.selectNone()
+			editor.zoomToFit({ animation: { duration: 250 } })
+			setStatus('Rendered')
+		} catch (error) {
+			if (error instanceof MermaidDiagramError) {
+				setStatus(`Unsupported or invalid ${error.diagramType} diagram`)
+			} else {
+				setStatus('Could not render diagram')
+			}
+			console.error(error)
+		}
+	}, [diagram])
+
+	const handleMount = useCallback(
+		(editor: Editor) => {
+			editorRef.current = editor
+			renderDiagram()
+			return () => {
+				editorRef.current = null
 			}
 		},
-	},
-	{
-		path: 'develop',
-		lazy: async () => ({ element: <Develop /> }),
-	},
-	{
-		path: 'end-to-end',
-		lazy: async () => ({ element: <EndToEnd /> }),
-	},
-	...examples.flatMap((exampleArray) =>
-		exampleArray.value.flatMap((example) => [
-			{
-				path: example.path,
-				lazy: async () => {
-					const Component = await example.loadComponent()
-					return {
-						element: (
-							<NoIndex>
-								<ExamplePage example={example}>
-									<ExampleWrapper example={example} component={Component} />
-								</ExamplePage>
-							</NoIndex>
-						),
-					}
-				},
-			},
-			{
-				path: `${example.path}/full`,
-				lazy: async () => {
-					const Component = await example.loadComponent()
-					return {
-						element: (
-							<NoIndex>
-								<ExampleWrapper example={example} component={Component} />
-							</NoIndex>
-						),
-					}
-				},
-			},
-		])
-	),
-])
+		[renderDiagram]
+	)
 
-function NoIndex({ children }: { children: React.ReactNode }) {
 	return (
-		<>
-			<Helmet>
-				<meta name="robots" content="noindex, noimageindex, nofollow" />
-			</Helmet>
-			{children}
-		</>
+		<div className="app">
+			<aside className="panel">
+				<header className="panel__header">
+					<h1>Mermaid canvas</h1>
+					<span>{status}</span>
+				</header>
+				<textarea
+					value={diagram}
+					onChange={(event) => setDiagram(event.currentTarget.value)}
+					spellCheck={false}
+					aria-label="Mermaid source"
+				/>
+				<button type="button" onClick={renderDiagram}>
+					Render
+				</button>
+			</aside>
+			<main className="canvas">
+				<Tldraw onMount={handleMount} />
+			</main>
+		</div>
 	)
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-	const rootElement = document.getElementById('root')!
-	const root = createRoot(rootElement!)
-	const main = (
+	const rootElement = document.getElementById('root')
+	if (!rootElement) throw new Error('Could not find root element')
+
+	createRoot(rootElement).render(
 		<ErrorBoundary
 			fallback={(error) => <DefaultErrorFallback error={error} />}
 			onError={(error) => console.error(error)}
 		>
-			<HelmetProvider>
-				<RootMeta />
-				<RouterProvider router={router} />
-			</HelmetProvider>
+			<App />
 		</ErrorBoundary>
 	)
-	root.render(ENABLE_STRICT_MODE ? <StrictMode>{main}</StrictMode> : main)
 })
-
-function RootMeta() {
-	return (
-		<Helmet>
-			<title>tldraw examples</title>
-			<meta
-				name="keywords"
-				content="tldraw, examples, whiteboard, react, collaborative whiteboard, online drawing, team collboration, react, library"
-			/>
-			<meta
-				name="description"
-				content="Examples for using tldraw - a library for building infinite canvases with React. "
-			/>
-		</Helmet>
-	)
-}

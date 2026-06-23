@@ -135,7 +135,7 @@ flowchart LR
 
 ## Example: paste handler
 
-A common integration is converting Mermaid text on paste. Here's a React component that registers itself as a text content handler — based on the pattern used on [tldraw.com](https://github.com/tldraw/tldraw/blob/main/apps/dotcom/client/src/components/SneakyMermaidHandler/SneakyMermaidHandler.tsx):
+A common integration is converting Mermaid text on paste. Here's a React component that registers itself as a text content handler:
 
 ```tsx
 import { useEffect } from 'react'
@@ -173,15 +173,13 @@ export function MermaidPasteHandler() {
 
 Drop `<MermaidPasteHandler />` inside your `<Tldraw>` component and users can paste Mermaid text directly onto the canvas.
 
-The regex above is a simplified check. On tldraw.com the detection is handled by [`simpleMermaidStringTest`](https://github.com/tldraw/tldraw/blob/main/apps/dotcom/client/src/components/SneakyMermaidHandler/simpleMermaidStringTest.ts), which also strips YAML frontmatter (`---...---`), `%%{...}%%` directives, and `%%` comments before testing for the diagram keyword — making it more robust for real-world pasted content.
-
 ## Lazy loading
 
 The `mermaid` dependency is roughly 2 MB. The paste handler above already lazy-loads with `await import('@tldraw/mermaid')` — the package is only fetched when the pasted text matches a Mermaid keyword. For your own integration, the same pattern applies: pre-screen with a lightweight regex, then dynamic-import the package only when needed.
 
 ## Examples
 
-See the [Mermaid diagrams example](https://github.com/tldraw/tldraw/tree/main/apps/examples/src/examples/use-cases/hundred-mermaids) in the examples app for a runnable demo that renders many diagram types at once. Run it locally with `yarn dev` from the repo root and visit `localhost:5420`.
+Run `yarn dev` from the repo root and visit `localhost:5420` for the local Mermaid canvas app.
 
 ## Documentation
 

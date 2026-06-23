@@ -247,7 +247,6 @@ export interface TLEditorOptions {
 	 * Whether to automatically focus the editor when it mounts.
 	 */
 	autoFocus?: boolean
-	licenseKey?: string
 	fontAssetUrls?: { [key: string]: string | undefined }
 	/**
 	 * Should return a containing html element which has all the styles applied to the editor. If not
