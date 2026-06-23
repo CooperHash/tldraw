@@ -66,15 +66,17 @@ async function buildPackage({ sourcePackageDir }: { sourcePackageDir: string }) 
 		},
 	})
 
-	copyFileSync(
-		path.join(sourcePackageDir, `api/public.d.ts`),
-		path.join(sourcePackageDir, 'dist-cjs/index.d.ts')
-	)
+	const publicTypesPath = existsSync(path.join(sourcePackageDir, `api/public.d.ts`))
+		? path.join(sourcePackageDir, `api/public.d.ts`)
+		: path.join(sourcePackageDir, `.tsbuild/index.d.ts`)
 
-	copyFileSync(
-		path.join(sourcePackageDir, `api/public.d.ts`),
-		path.join(sourcePackageDir, 'dist-esm/index.d.mts')
-	)
+	if (!existsSync(publicTypesPath)) {
+		throw new Error(`No public type declarations found for ${packageName}`)
+	}
+
+	copyFileSync(publicTypesPath, path.join(sourcePackageDir, 'dist-cjs/index.d.ts'))
+
+	copyFileSync(publicTypesPath, path.join(sourcePackageDir, 'dist-esm/index.d.mts'))
 }
 
 /** This uses esbuild to build the esm version of the package */
